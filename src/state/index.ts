@@ -2,13 +2,11 @@ import { getCurrentDateTime } from "@/app/utils/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface InitialStateTypes {
-  isSidebarCollapesed: boolean;
   isDarkMode: boolean;
   history: any;
 }
 
 const initialState: InitialStateTypes = {
-  isSidebarCollapesed: false,
   isDarkMode: false,
   history: [{ country: "Singapore", sys: "SG", dt: getCurrentDateTime() }],
 };
@@ -17,9 +15,6 @@ export const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {
-    setIsSidebarCollapsed: (state, action: PayloadAction<boolean>) => {
-      state.isSidebarCollapesed = action.payload;
-    },
     setIsDarkmode: (state, action: PayloadAction<boolean>) => {
       state.isDarkMode = action.payload;
     },
@@ -29,7 +24,6 @@ export const globalSlice = createSlice({
   },
 });
 
-export const { setIsSidebarCollapsed, setIsDarkmode, setHistory } =
-  globalSlice.actions;
+export const { setIsDarkmode, setHistory } = globalSlice.actions;
 
 export default globalSlice.reducer;

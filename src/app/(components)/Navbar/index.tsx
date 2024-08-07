@@ -22,7 +22,6 @@ const Navbar = () => {
 
       {/* RIGHT SIDE */}
       <div className="flex justify-between items-center gap-5">
-        {/* HIDDEN on small screen */}
         <div className="md:flex justify-between items-center gap-5">
           <div>
             <button onClick={toggleDarkMode}>
