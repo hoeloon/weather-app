@@ -1,3 +1,4 @@
+Live Demo: https://weather-app-theta-sepia-20.vercel.app/
 # Weather App
 
 Weather App is a web application that provides users with current weather conditions and a 5-day forecast in 3-hour intervals. The application features a dashboard where users can search for a city's weather, view detailed information, see graphical representations of weather trends, and access their search history.
