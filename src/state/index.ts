@@ -1,3 +1,4 @@
+import { getCurrentDateTime } from "@/app/utils/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface InitialStateTypes {
@@ -9,7 +10,7 @@ export interface InitialStateTypes {
 const initialState: InitialStateTypes = {
   isSidebarCollapesed: false,
   isDarkMode: false,
-  history: [{ country: "Singapore", sys: "SG" }],
+  history: [{ country: "Singapore", sys: "SG", dt: getCurrentDateTime() }],
 };
 
 export const globalSlice = createSlice({

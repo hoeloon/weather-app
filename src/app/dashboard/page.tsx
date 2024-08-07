@@ -10,6 +10,7 @@ import CardHistory from "@/app/dashboard/CardHistory";
 import { useAppDispatch, useAppSelector } from "../redux";
 import { setHistory } from "@/state";
 import CardGraphB from "./CardGraphB";
+import { getCurrentDateTime } from "../utils/utils";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -38,7 +39,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (dataWeather) {
       const currWeathers = [
-        { country: dataWeather.name, sys: dataWeather.sys.country },
+        {
+          country: dataWeather.name,
+          sys: dataWeather.sys.country,
+          dt: getCurrentDateTime(),
+        },
         ...history,
       ];
       if (history.length < 1) {
@@ -50,37 +55,44 @@ const Dashboard = () => {
   }, [dataWeather]);
 
   return (
-    <div>
+    <div className="flex flex-col">
       {/* Search Bar */}
-      <form onSubmit={HandleSumit}>
-        <div className="flex gap-4 pb-5 items-center">
-          <div className="relative">
-            <input
-              type="search"
-              placeholder="Start type to search"
-              onChange={(e) => {
-                setTemp(e.target.value);
-              }}
-              value={temp}
-              className="pl-10 pr-4 py-2 w-auto md:w-auto border-2 border-gray-300 bg-white rounded-lg focus:outline-none focus:border-blue-50"
-            />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="text-gray-500" size={20} />
+      <div>
+        <form onSubmit={HandleSumit}>
+          <div className="flex flex-col pb-4">
+            <div className="flex gap-4 py-2 items-center">
+              <div className="relative">
+                <input
+                  type="search"
+                  placeholder="Start type to search"
+                  onChange={(e) => {
+                    setTemp(e.target.value);
+                  }}
+                  value={temp}
+                  className="pl-10 pr-4 py-2 w-auto md:w-auto border-2 border-gray-300 bg-white rounded-lg focus:outline-none focus:border-blue-50"
+                />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="text-gray-500" size={20} />
+                </div>
+              </div>
+              {/* Button */}
+              <button
+                className="bg-gray-200 px-4 py-2 rounded-md"
+                type="submit"
+              >
+                Search
+              </button>
             </div>
+            {isErrorWeather || isErrorForecast ? (
+              <span className="text-red-500 font-semibold pl-4">
+                Invalid country or city
+              </span>
+            ) : (
+              <></>
+            )}
           </div>
-          {/* Button */}
-          <button className="bg-gray-200 px-4 py-2 rounded-md" type="submit">
-            Search
-          </button>
-          {isErrorWeather || isErrorForecast ? (
-            <span className="text-red-500 font-semibold">
-              Invalid country or city
-            </span>
-          ) : (
-            <></>
-          )}
-        </div>
-      </form>
+        </form>
+      </div>
       {/* Dashboard Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-10 pb-4 custom-grid-rows">
         {/* Grid 1 */}
