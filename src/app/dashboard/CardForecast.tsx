@@ -1,6 +1,7 @@
 import { ForeCastWeather } from "@/state/api";
 import React from "react";
 import Image from "next/image";
+import Title from "../(components)/Title";
 
 type CardForecastProps = {
   data: ForeCastWeather | void;
@@ -44,26 +45,21 @@ function formatTime(unixTimestamp: number) {
 }
 
 const CardForecast = ({ data, isLoading, isError }: CardForecastProps) => {
-  if (isError) {
-    return <div className="m-5">Failed to fetch data</div>;
-  }
-
   const groupedData = data ? groupByDay(data?.list) : {};
   return (
     <div
       className="row-span-3 col-span-2  xl:row-span-7 xl:col-span-1 md:row-span-4 md:col-span-1
       shadow-md rounded-2xl pb-16 bg-white bg-opacity-50"
     >
+      {" "}
+      <Title title="5 Day Forecast (3 Hours)" />
+      <hr />
       {isLoading ? (
         <div>Loading...</div>
       ) : data ? (
         <>
           {" "}
-          <h2 className="text-lg font-semibold mb-2 px-5 pt-3">
-            5 Day Forecase (3 Hours)
-          </h2>
-          <hr />
-          <div className="overflow-auto h-full">
+          <div className="overflow-auto h-full scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thin scrollbar-track-transparent">
             {Object.entries(groupedData).map(([key, value]: any) => (
               <div className="flex flex-col gap-3 px-5 py-7 border-b" key={key}>
                 <span className="text-lg text-gray-500">{key}</span>

@@ -96,12 +96,6 @@ export const api = createApi({
           appid: process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY,
         },
       }),
-      transformResponse: (response: any) => {
-        if (response) {
-          console.log("history", history);
-        }
-        return response;
-      },
     }),
     getForecast: build.query<ForeCastWeather, string | void>({
       query: (q) => ({

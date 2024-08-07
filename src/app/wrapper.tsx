@@ -7,7 +7,6 @@ import StoreProvider, { useAppSelector } from "./redux";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-  console.log("isDarkMode", isDarkMode);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -20,9 +19,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`${
         isDarkMode ? "dark" : "light"
-      } flex bg-gray-50 text-gray-900 w-full min-h-screen`}
+      } flex bg-gray-100 text-gray-900 w-full min-h-screen `}
     >
-      <main className={`flex flex-col w-full h-full py-7 px-9 bg-gray-50`}>
+      <main className={`flex flex-col w-full h-full py-7 px-9 bg-gray-100`}>
         <Navbar />
         {children}
       </main>

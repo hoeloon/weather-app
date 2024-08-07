@@ -20,7 +20,6 @@ export const globalSlice = createSlice({
       state.isSidebarCollapesed = action.payload;
     },
     setIsDarkmode: (state, action: PayloadAction<boolean>) => {
-      console.log(action);
       state.isDarkMode = action.payload;
     },
     setHistory: (state, action: PayloadAction<any>) => {

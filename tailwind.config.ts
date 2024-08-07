@@ -69,6 +69,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [createThemes(themes)],
+  plugins: [createThemes(themes), require("tailwind-scrollbar")],
 };
 export default config;

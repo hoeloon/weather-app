@@ -11,6 +11,7 @@ import {
   YAxis,
 } from "recharts";
 import { epochToDate } from "../utils/utils";
+import Title from "../(components)/Title";
 
 type CardGraphAProps = {
   data: ForeCastWeather | void;
@@ -19,14 +20,12 @@ type CardGraphAProps = {
 };
 
 const CardGraphA = ({ data, isLoading, isError }: CardGraphAProps) => {
-  if (isError) {
-    return <div className="m-5">Failed to fetch data</div>;
-  }
   return (
-    <div className="">
-      <h2 className="text-lg font-semibold mb-2 px-5 pt-3">
-        5 Day Temperature
-      </h2>
+    <div
+      className="row-span-3 col-span-2  xl:row-span-3 xl:col-span-1 md:row-span-2 md:col-span-1
+      shadow-md rounded-2xl pb-16 bg-white bg-opacity-50"
+    >
+      <Title title="5 Day Temperature" />
       <hr />
       {isLoading ? (
         <div>Loading...</div>

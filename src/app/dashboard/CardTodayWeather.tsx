@@ -9,6 +9,8 @@ import {
   Thermometer,
   Wind,
 } from "lucide-react";
+import WindDirection from "./WindDirection";
+import Title from "../(components)/Title";
 
 type CardTodayWeatherProps = {
   data: CurrentWeather | void;
@@ -21,36 +23,35 @@ const CardTodayWeather = ({
   isLoading,
   isError,
 }: CardTodayWeatherProps) => {
-  if (isError) {
-    return <div className="m-5">Failed to fetch data</div>;
-  }
-
   return (
-    <div className="px-7">
-      <h2 className="text-lg font-semibold mb-2 pt-5">Today Highlight</h2>
+    <div
+      className="row-span-3 col-span-2 xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
+      shadow-md rounded-2xl pb-16 bg-white bg-opacity-50"
+    >
+      <Title title="Today Highlight" />
       <hr />
       {isLoading ? (
         <div>Loading...</div>
       ) : data ? (
         <div className="">
           <div className="flex justify-between items-center pb-4">
-            <span className="text-5xl  p-4">
+            <span className="text-5xl p-10 text-gray-700">
               {data.name}, {data.sys.country}{" "}
             </span>
             <div className="flex flex-col items-center">
               <Image
                 src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-                alt="test"
+                alt={data.weather[0].description}
                 width={150}
                 height={150}
               />
-              <span className="capitalize font-bold">
+              <span className="capitalize font-bold text-gray-500">
                 {data.weather[0].description}
               </span>
             </div>
           </div>
           <hr />
-          <div className="flex justify-between p-4">
+          <div className="flex justify-between p-4 px-10">
             <div className="flex flex-col items-center">
               <div>
                 <Thermometer className="w-10 h-10" />
@@ -80,7 +81,7 @@ const CardTodayWeather = ({
                 <Wind className="w-10 h-10" />
               </div>
               <div className="flex">
-                <ArrowDownLeft className="w-5 h-5" />
+                <WindDirection wind={data.wind} />
                 {data.wind.speed}m/s
               </div>
             </div>

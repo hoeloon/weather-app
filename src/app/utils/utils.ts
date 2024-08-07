@@ -1,3 +1,14 @@
+import {
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  ArrowDownLeft,
+  ArrowUpLeft,
+  ArrowDownRight,
+} from "lucide-react";
+
 export const lastHistoryCountryName = () => {
   return "singapore";
 };

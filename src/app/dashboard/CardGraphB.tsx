@@ -1,19 +1,14 @@
 import { ForeCastWeather } from "@/state/api";
 import React from "react";
 import {
-  CartesianGrid,
   Cell,
   Legend,
-  Line,
-  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
   Tooltip,
-  XAxis,
-  YAxis,
 } from "recharts";
-import { epochToDate } from "../utils/utils";
+import Title from "../(components)/Title";
 
 type CardGraphBProps = {
   data: ForeCastWeather | void;
@@ -22,9 +17,6 @@ type CardGraphBProps = {
 };
 
 const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
-  if (isError) {
-    return <div className="m-5">Failed to fetch data</div>;
-  }
   // Count occurrences of each weather condition
 
   // Transform counts to an array suitable for Recharts PieChart
@@ -46,10 +38,13 @@ const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
     return fdata;
   };
 
-  const COLORS = ["#0088FE", "#00C49F"];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   return (
-    <div className="">
-      <h2 className="text-lg font-semibold mb-2 px-5 pt-3">5 Day Weather</h2>
+    <div
+      className="row-span-3 col-span-2  xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
+      shadow-md rounded-2xl flex flex-col justify-between bg-white bg-opacity-50"
+    >
+      <Title title="5 Day Weathet" />
       <hr />
       {isLoading ? (
         <div>Loading...</div>
@@ -77,7 +72,7 @@ const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend />
+              {/* <Legend /> */}
             </PieChart>
           </ResponsiveContainer>
         </>

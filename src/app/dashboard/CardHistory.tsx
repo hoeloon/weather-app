@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Delete, Search, Trash } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../redux";
 import { setHistory } from "@/state";
+import Title from "../(components)/Title";
 
 type Props = {
   setSearch: any;
@@ -10,10 +11,8 @@ type Props = {
 const CardHistory = ({ setSearch }: Props) => {
   const dispatch = useAppDispatch();
   const history = useAppSelector((state) => state.global.history);
-  console.log("history", history);
 
   const handleDelete = (index: number) => {
-    console.log("index", index);
     const reducedArr = [...history];
     reducedArr.splice(index, 1);
     dispatch(setHistory(reducedArr));
@@ -22,11 +21,11 @@ const CardHistory = ({ setSearch }: Props) => {
   return (
     <div
       className="row-span-2 col-span-2  xl:row-span-3 xl:col-span-1 md:row-span-2 md:col-span-1
-      shadow-md rounded-2xl flex flex-col justify-between bg-white"
+      shadow-md rounded-2xl flex flex-col justify-between bg-white bg-opacity-50"
     >
-      <h2 className="text-lg font-semibold mb-2 px-5 pt-3">History</h2>
+      <Title title="History" />
       <hr />
-      <div className="overflow-auto h-full">
+      <div className="overflow-auto h-full  scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thin scrollbar-track-transparent">
         {history &&
           history.map((item: any, index: number) => (
             <div className="flex flex-col gap-3 px-5 py-3 border-b" key={index}>

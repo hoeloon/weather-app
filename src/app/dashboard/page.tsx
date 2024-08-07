@@ -32,15 +32,20 @@ const Dashboard = () => {
   const HandleSumit = (e: any) => {
     e.preventDefault();
     setSearch(temp);
+    setTemp("");
   };
 
   useEffect(() => {
     if (dataWeather) {
-      const ppp = [
+      const currWeathers = [
         { country: dataWeather.name, sys: dataWeather.sys.country },
         ...history,
       ];
-      dispatch(setHistory(ppp));
+      if (history.length < 1) {
+        dispatch(setHistory(currWeathers));
+      } else if (dataWeather.name !== history?.at(0).country) {
+        dispatch(setHistory(currWeathers));
+      }
     }
   }, [dataWeather]);
 
@@ -48,7 +53,7 @@ const Dashboard = () => {
     <div>
       {/* Search Bar */}
       <form onSubmit={HandleSumit}>
-        <div className="flex gap-4 pb-5">
+        <div className="flex gap-4 pb-5 items-center">
           <div className="relative">
             <input
               type="search"
@@ -56,6 +61,7 @@ const Dashboard = () => {
               onChange={(e) => {
                 setTemp(e.target.value);
               }}
+              value={temp}
               className="pl-10 pr-4 py-2 w-auto md:w-auto border-2 border-gray-300 bg-white rounded-lg focus:outline-none focus:border-blue-50"
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -63,24 +69,28 @@ const Dashboard = () => {
             </div>
           </div>
           {/* Button */}
-          <button className="bg-gray-200 px-4 rounded-md" type="submit">
+          <button className="bg-gray-200 px-4 py-2 rounded-md" type="submit">
             Search
           </button>
+          {isErrorWeather || isErrorForecast ? (
+            <span className="text-red-500 font-semibold">
+              Invalid country or city
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
       </form>
       {/* Dashboard Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto md:overflow-auto gap-10 pb-4 custom-grid-rows">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-10 pb-4 custom-grid-rows">
         {/* Grid 1 */}
-        <div
-          className="row-span-3 col-span-2 xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
-      shadow-md rounded-2xl pb-16 bg-white bg-opacity-50"
-        >
-          <CardTodayWeather
-            data={dataWeather}
-            isLoading={isLoadingWeather}
-            isError={isErrorWeather}
-          />
-        </div>
+
+        <CardTodayWeather
+          data={dataWeather}
+          isLoading={isLoadingWeather}
+          isError={isErrorWeather}
+        />
+
         {/* Grid 2 */}
 
         <CardForecast
@@ -90,27 +100,21 @@ const Dashboard = () => {
         />
 
         {/* Grid 3 */}
-        <div
-          className="row-span-3 col-span-2  xl:row-span-3 xl:col-span-1 md:row-span-2 md:col-span-1
-      shadow-md rounded-2xl pb-16 bg-white"
-        >
-          <CardGraphA
-            data={dataForecast}
-            isLoading={isLoadingForecast}
-            isError={isErrorForecast}
-          />
-        </div>
+
+        <CardGraphA
+          data={dataForecast}
+          isLoading={isLoadingForecast}
+          isError={isErrorForecast}
+        />
+
         {/* Grid 4 */}
-        <div
-          className="row-span-3 col-span-2  xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
-      shadow-md rounded-2xl flex flex-col justify-between bg-white"
-        >
-          <CardGraphB
-            data={dataForecast}
-            isLoading={isLoadingForecast}
-            isError={isErrorForecast}
-          />
-        </div>
+
+        <CardGraphB
+          data={dataForecast}
+          isLoading={isLoadingForecast}
+          isError={isErrorForecast}
+        />
+
         {/* Grid 5 */}
 
         <CardHistory setSearch={setSearch} />
