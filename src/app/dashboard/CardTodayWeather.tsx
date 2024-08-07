@@ -34,7 +34,7 @@ const CardTodayWeather = ({
         <div>Loading...</div>
       ) : data ? (
         <div className="">
-          <div className="flex justify-between items-center pb-4">
+          <div className="flex justify-between items-center pb-4 flex-col md:flex-row lg:flex-row">
             <span className="text-5xl p-10 text-gray-700">
               {data.name}, {data.sys.country}{" "}
             </span>
