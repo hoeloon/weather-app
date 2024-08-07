@@ -82,7 +82,7 @@ const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
           </ResponsiveContainer>
         </>
       ) : (
-        <>"no data"</>
+        <>no data</>
       )}
     </div>
   );

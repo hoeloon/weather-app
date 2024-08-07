@@ -1,5 +1,3 @@
-import { useAppSelector } from "@/app/redux";
-import { insertHistories } from "@/app/utils/utils";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Coord {

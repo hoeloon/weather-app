@@ -87,7 +87,7 @@ const CardTodayWeather = ({
           </div>
         </div>
       ) : (
-        <>"no data"</>
+        <>no data</>
       )}
     </div>
   );

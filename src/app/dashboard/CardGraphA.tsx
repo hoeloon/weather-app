@@ -71,7 +71,7 @@ const CardGraphA = ({ data, isLoading, isError }: CardGraphAProps) => {
           </ResponsiveContainer>
         </>
       ) : (
-        <>"no data"</>
+        <>no data</>
       )}
     </div>
   );

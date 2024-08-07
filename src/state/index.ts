@@ -9,10 +9,7 @@ export interface InitialStateTypes {
 const initialState: InitialStateTypes = {
   isSidebarCollapesed: false,
   isDarkMode: false,
-  history: [
-    { country: "George Town", sys: "MY" },
-    { country: "China", sys: "MX" },
-  ],
+  history: [{ country: "Singapore", sys: "SG" }],
 };
 
 export const globalSlice = createSlice({

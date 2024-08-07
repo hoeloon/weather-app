@@ -1,6 +1,3 @@
-import { setHistory } from "@/state";
-import { useAppDispatch, useAppSelector } from "../redux";
-
 export const lastHistoryCountryName = () => {
   return "singapore";
 };
