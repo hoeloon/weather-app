@@ -77,17 +77,6 @@ const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <ul className="flex flex-col justify-around items-start py-5 gap-5">
-            {result().map((entry: any, index: number) => (
-              <li key={`legend-${index}`} className="flex items-center text-xs">
-                <span
-                  className="mr-2 w-3 h-3 rounded-full"
-                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                ></span>
-                {entry.name}
-              </li>
-            ))}
-          </ul>
         </div>
       ) : (
         <>no data</>
