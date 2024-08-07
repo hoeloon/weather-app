@@ -41,41 +41,54 @@ const CardGraphB = ({ data, isLoading, isError }: CardGraphBProps) => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   return (
     <div
-      className="row-span-3 col-span-2  xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
-      shadow-md rounded-2xl flex flex-col justify-between bg-white bg-opacity-50"
+      className="row-span-3 col-span-2 xl:row-span-3 xl:col-span-1 md:row-span-2 md:col-span-1
+      shadow-md rounded-2xl justify-between bg-white bg-opacity-50"
     >
-      <Title title="5 Day Weathet" />
+      <Title title="5 Day Weather" />
       <hr />
       {isLoading ? (
         <div>Loading...</div>
       ) : result ? (
-        <>
-          <ResponsiveContainer width="100%" height={400}>
-            <PieChart>
-              <Pie
-                data={result()}
-                cx={200}
-                cy={160}
-                labelLine={false}
-                label={({ name, percent }) =>
-                  `${name} ${(percent * 100).toFixed(0)}%`
-                }
-                outerRadius={70}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {result().map((entry: any, index: any) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              {/* <Legend /> */}
-            </PieChart>
-          </ResponsiveContainer>
-        </>
+        <div className="flex pr-7">
+          <div className="relative basis-3/5">
+            <ResponsiveContainer width={300} height={250}>
+              <PieChart>
+                <Pie
+                  data={result()}
+                  cx={150}
+                  cy={110}
+                  labelLine={false}
+                  label={({ name, percent }) =>
+                    `${name} ${(percent * 100).toFixed(0)}%`
+                  }
+                  outerRadius={70}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {result().map((entry: any, index: number) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                {/* <Legend /> */}
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <ul className="flex flex-col justify-around items-start py-5 gap-5">
+            {result().map((entry: any, index: number) => (
+              <li key={`legend-${index}`} className="flex items-center text-xs">
+                <span
+                  className="mr-2 w-3 h-3 rounded-full"
+                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                ></span>
+                {entry.name}
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <>no data</>
       )}

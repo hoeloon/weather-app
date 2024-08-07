@@ -15,7 +15,7 @@ body,
   height: 100%;
   width: 100%;
   @apply text-sm;
-  @apply bg-gray-500;
+  @apply bg-gray-100;
   @appply text-gray-900;
 }
 

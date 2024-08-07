@@ -95,15 +95,11 @@ const Dashboard = () => {
       </div>
       {/* Dashboard Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-10 pb-4 custom-grid-rows">
-        {/* Grid 1 */}
-
         <CardTodayWeather
           data={dataWeather}
           isLoading={isLoadingWeather}
           isError={isErrorWeather}
         />
-
-        {/* Grid 2 */}
 
         <CardForecast
           data={dataForecast}
@@ -111,25 +107,19 @@ const Dashboard = () => {
           isError={isErrorForecast}
         />
 
-        {/* Grid 3 */}
-
         <CardGraphA
           data={dataForecast}
           isLoading={isLoadingForecast}
           isError={isErrorForecast}
         />
 
-        {/* Grid 4 */}
+        <CardHistory setSearch={setSearch} />
 
         <CardGraphB
           data={dataForecast}
           isLoading={isLoadingForecast}
           isError={isErrorForecast}
         />
-
-        {/* Grid 5 */}
-
-        <CardHistory setSearch={setSearch} />
       </div>
     </div>
   );

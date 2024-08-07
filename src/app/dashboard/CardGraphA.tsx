@@ -22,7 +22,7 @@ type CardGraphAProps = {
 const CardGraphA = ({ data, isLoading, isError }: CardGraphAProps) => {
   return (
     <div
-      className="row-span-3 col-span-2  xl:row-span-3 xl:col-span-1 md:row-span-2 md:col-span-1
+      className="row-span-3 col-span-2  xl:row-span-4 xl:col-span-1 md:row-span-2 md:col-span-1
       shadow-md rounded-2xl pb-16 bg-white bg-opacity-50"
     >
       <Title title="5 Day Temperature" />
@@ -31,7 +31,7 @@ const CardGraphA = ({ data, isLoading, isError }: CardGraphAProps) => {
         <div>Loading...</div>
       ) : data ? (
         <>
-          <ResponsiveContainer width="100%" height={200} className="pt-3 pr-10">
+          <ResponsiveContainer width="100%" height={300} className="pt-3 pr-10">
             <LineChart
               width={500}
               height={300}
@@ -50,7 +50,7 @@ const CardGraphA = ({ data, isLoading, isError }: CardGraphAProps) => {
                   return epochToDate(value);
                 }}
               />
-              <YAxis />
+              <YAxis domain={["auto", "auto"]} />
               <Tooltip
                 formatter={(value: number) => ["", `${value}°C`]}
                 labelFormatter={(value) => {
